@@ -6,8 +6,9 @@ You will need visual studio to run it out of the box.
 After build put SDL2.dll in your executable folder to run the emulator
 
 # Setup PSP
-You will need a configured pspsdk to build the psp version 
+You will need a configured pspsdk to build the psp version. Then run make in Chip8emulator_psp folder.
 You can edit run.bat if on windows to run the homebrew with PPSSPP emulator.
+to test on a real psp put the EBOOT.PBP and PONG in a folder in PSP/GAME ( Example: /PSP/GAME/chip8/EBOOT.PBP)
 
 Fell free to use this as you want. I mainly made it for training purposes.
 
