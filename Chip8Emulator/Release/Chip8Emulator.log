@@ -1,0 +1,23 @@
+﻿La génération a démarré 05/02/2018 17:14:57.
+     1>Projet "C:\Users\Fliguan35\Documents\Project info\Chip8Emulator\Chip8Emulator\Chip8Emulator.vcxproj" sur le nœud 2 (Build cible(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt chip8.cpp Graphics.cpp Input.cpp main.cpp
+         chip8.cpp
+     1>chip8.cpp(214): warning C4333: '>>' : décalage vers la droite trop important, perte de données
+     1>chip8.cpp(390): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdio.h(205): note: voir la déclaration de 'fopen'
+     1>chip8.cpp(443): error C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h(90): note: voir la déclaration de 'strcat'
+     1>chip8.cpp(471): error C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h(90): note: voir la déclaration de 'strcat'
+         Graphics.cpp
+     1>c:\users\fliguan35\documents\project info\chip8emulator\chip8emulator\Graphics.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SDL.h' : No such file or directory
+         Input.cpp
+     1>c:\users\fliguan35\documents\project info\chip8emulator\chip8emulator\Graphics.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SDL.h' : No such file or directory
+         main.cpp
+     1>c:\users\fliguan35\documents\project info\chip8emulator\chip8emulator\Graphics.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SDL.h' : No such file or directory
+     1>Génération du projet "C:\Users\Fliguan35\Documents\Project info\Chip8Emulator\Chip8Emulator\Chip8Emulator.vcxproj" terminée (Build cible(s)) -- ÉCHEC.
+
+ÉCHEC de la build.
+
+Temps écoulé 00:00:02.91

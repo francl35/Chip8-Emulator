@@ -1,0 +1,3 @@
+JP 0x300 
+RET
+CLS

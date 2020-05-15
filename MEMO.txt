@@ -1,0 +1,64 @@
+********************************MEMO Bit operations******************************
+
+0xFF >> 8 décallage de 8 bits vers la droite.(on ajoute 8 bits devant) right shift
+11111111 -> 0000000011111111
+
+0xFF << 8 décallage de 8 bits vers la gauche (on ajoute 8 bits après) left shift
+11111111 -> 1111111100000000
+
+left shift n (<< n)-> shift n to left or multiply by 2^n
+right shift (>> n) -> shift n to right or divide by 2^n and rounding toward 0
+
+HEX : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.[0,15]
+
+0 -> F : 0000 -> 1111
+
+AND
+
+1010001011110000 & // 0xA2F0 (opcode)
+0000111111111111 = // 0x0FFF
+------------------
+0000001011110000   // 0x02F0 (0x2F0)
+
+opcode 0x8VY4 example:
+VX = VX + VY / VX += VY
+if 0x8A54
+V[A] += V[5] (V[F])
+V[(opcode & 0x0F00)] = 0x0A00 != 0x000A so V[(opcode & 0x0F00) >> 8]
+V[(opcode & 0x00F0)] = 0x0050 != 0x0005 so V[(opcode & 0x00F0) >> 4]
+then:
+V[(opcode & 0x0F00) >> 8] += V[(opcode & 0x00F0) >> 4];
+
+*********************************KEYBOARD********************
+layout :
+
+Keyboard
++-+-+-+-+
+|1|2|3|4|
++-+-+-+-+
+|Q|W|E|R|
++-+-+-+-+
+|A|S|D|F|
++-+-+-+-+                
+|Z|X|C|V|
++-+-+-+-+ 
+
+**********************************TO DO************************************
+SDL sound add
+Time travel
+View registers and opcode
+*********************elapsed time calculation*******************************
+LARGE_INTEGER frequency;        // ticks per second
+LARGE_INTEGER t1, t2;           // ticks
+double elapsedTime;
+
+// get ticks per second
+QueryPerformanceFrequency(&frequency);
+
+// start timer
+QueryPerformanceCounter(&t1);
+
+QueryPerformanceCounter(&t2);
+// compute and print the elapsed time in millisec
+elapsedTime = (t2.QuadPart - t1.QuadPart) * 1000.0 / frequency.QuadPart;
+		cout << elapsedTime/1000 << " s.\n";

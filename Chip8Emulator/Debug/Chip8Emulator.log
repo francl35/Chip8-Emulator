@@ -1,0 +1,3 @@
+﻿  main.cpp
+g:\users\francois\projects\chip8-emulator\chip8emulator\main.cpp(117): warning C4244: 'argument' : conversion de 'float' en 'DWORD', perte possible de données
+  Chip8Emulator.vcxproj -> G:\Users\Francois\Projects\Chip8-Emulator\Debug\Chip8Emulator.exe
