@@ -1,6 +1,6 @@
 # Chip8-Emulator
 Chip 8 emulator I made in C++. (early draft, not polished yet)
-you can run it on windows, linux, and Vita. You will need visual studio to run it out of the box. (unix and vita need some fixes)
+You will need visual studio to run it out of the box.
 Based on : http://www.multigesture.net/articles/how-to-write-an-emulator-chip-8-interpreter/
 
 References:
