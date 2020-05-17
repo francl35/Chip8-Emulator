@@ -2,12 +2,14 @@
 #include "Input.h"
 #include "chip8.h" // Your cpu core implementation
 #include <windows.h>                // for Windows APIs
+#include <chrono>
+#include <numeric>
 
 
 chip8 myChip8;
 Graphics Gfx;
 Input input;
-gfx_state State = SDL;
+gfx_state State = DEBUG;
 
 void drawGraphics()
 {
@@ -31,7 +33,7 @@ void drawGraphics()
 	{
 		++numFrames;
 		lastFrame = SDL_GetTicks();
-		cout << numFrames / (elapsedMS / 1000.0) << endl;
+		//cout << numFrames / (elapsedMS / 1000.0) << endl;
 	}
 
 	switch (State)
@@ -91,13 +93,29 @@ int main(int argc, char **argv)
 
 	int FPS = 50; //Framerate
 
+	std::vector<double> emulate_times;
 
 	// Emulation loop
 	for (;;)// while(1) equivalent
 	{
+		auto start = chrono::steady_clock::now();
+		
 		// Emulate one cycle
 		myChip8.emulateCycle();
 
+		auto end = chrono::steady_clock::now();
+		auto diff = end - start;
+		emulate_times.push_back(chrono::duration <double, milli>(diff).count());
+
+		if (emulate_times.size() == 150)
+		{
+			double sum = std::accumulate(emulate_times.begin(), emulate_times.end(), 0.0);
+			double mean = sum / emulate_times.size();
+			cout << " mean value : "  <<  mean << " ms" << endl;
+			system("pause");
+		}
+
+		//cout << chrono::duration <double, milli>(diff).count() << " ms" << endl;
 		// If the draw flag is set, update the screen
 		if (myChip8.drawFlag)
 			drawGraphics();//Opengl/SDl part
