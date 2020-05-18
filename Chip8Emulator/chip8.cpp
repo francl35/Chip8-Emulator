@@ -376,7 +376,7 @@ void chip8::emulateCycle()
 	if (sound_timer > 0)
 	{
 		if (sound_timer == 1)
-			printf("BEEP!\n");
+			//printf("BEEP!\n");
 		--sound_timer;
 	}
 
@@ -444,7 +444,7 @@ void chip8::Dissasemble(char * file_name)
 {
 	FILE * pFile = NULL;
 	// fopen binary mode
-	pFile = fopen(strcat(file_name,".ch8"), "rw");
+	//pFile = fopen(strcat(file_name,".ch8"), "rw");
 
 	if (!pFile)
 	{
@@ -472,7 +472,7 @@ void chip8::Dissasemble(char * file_name)
 	{
 		char buffer[20] = "";
 		sprintf(buffer, "%d", (opcode & 0x0FFF));
-		fputs(strcat("JP", buffer), pFile);
+		//fputs(strcat("JP", buffer), pFile);
 		fputs("\n", pFile);
 	}
 		break;

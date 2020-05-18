@@ -1,8 +1,11 @@
 #pragma once
 #include "chip8.h"
 #include "Graphics.h"
-#include <SDL.h>
-
+#ifdef _WIN32
+	#include <SDL.h>
+#else 
+	#include <SDL2/SDL.h>
+#endif
 class Input
 {
 	SDL_Event m_event;

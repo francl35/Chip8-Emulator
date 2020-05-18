@@ -1,7 +1,11 @@
 #include "Graphics.h"  // OpenGL and SDL graphics and input
 #include "Input.h"
 #include "chip8.h" // Your cpu core implementation
-#include <windows.h>                // for Windows APIs
+#ifdef _WIN32
+	#include <windows.h>                // for Windows APIs
+#else
+	#include <unistd.h>
+#endif
 #include <chrono>
 #include <numeric>
 
@@ -9,7 +13,7 @@
 chip8 myChip8;
 Graphics Gfx;
 Input input;
-gfx_state State = DEBUG;
+gfx_state State = SDL;
 
 void drawGraphics()
 {
@@ -89,7 +93,7 @@ int main(int argc, char **argv)
 	myChip8.Dissasemble("TEST");
 	*/
 	
-	myChip8.loadGame("c8games/PONG");
+	myChip8.loadGame((char*)"c8games/PONG");
 
 	int FPS = 50; //Framerate
 
@@ -112,7 +116,7 @@ int main(int argc, char **argv)
 			double sum = std::accumulate(emulate_times.begin(), emulate_times.end(), 0.0);
 			double mean = sum / emulate_times.size();
 			cout << " mean value : "  <<  mean << " ms" << endl;
-			system("pause");
+			//system("pause");
 		}
 
 		//cout << chrono::duration <double, milli>(diff).count() << " ms" << endl;
@@ -132,7 +136,8 @@ int main(int argc, char **argv)
 		if (Gfx.Exit_App() == true)
 			break;
 		// execute at 60 hz
-		Sleep(1000.0f/960.0f);
+		//sleep(1000.0f/960.0f);
+		SDL_Delay(1000.0f / 960.0f);
 		
 		
 		
@@ -143,7 +148,14 @@ int main(int argc, char **argv)
 		}*/
 
 		if(State == DEBUG)
-			system("cls");
+		{
+			#ifdef _WIN32
+				system("cls");
+			#else 
+				system("clear");
+			#endif
+		}
+
 
 		/*cout << "Register Map" << endl;
 		for (int i = 0; i < 16; i++)

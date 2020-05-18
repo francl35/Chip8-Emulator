@@ -1,5 +1,9 @@
 #pragma once
-#include <SDL.h>
+#ifdef _WIN32
+	#include <SDL.h>
+#else 
+	#include <SDL2/SDL.h>
+#endif
 #include "chip8.h"
 #include <time.h>       /* clock_t, clock, CLOCKS_PER_SEC */
 //#include <gl/GL.h>
