@@ -82,6 +82,8 @@ public:
 	chip8();
 	~chip8();
 	void initialize();
+
+	void emulateCycle_Fnc();
 	void emulateCycle();
 	void loadGame(char * file_name);
 	void setKeys();

@@ -3,7 +3,7 @@
 #include "Graphics.h"
 #include <pspctrl.h>
 
-#include <SDL2\SDL.h>
+#include <SDL2/SDL.h>
 
 class Input
 {

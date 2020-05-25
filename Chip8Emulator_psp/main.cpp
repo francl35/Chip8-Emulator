@@ -3,6 +3,10 @@
 #include "Input.h"
 #include "common.h"
 // #include <windows.h>                // for Windows APIs
+#include <unistd.h>
+#include <chrono>
+#include <numeric>
+
 
 PSP_MODULE_INFO("HELLO WORLD", 0, 1, 0);
 PSP_MAIN_THREAD_ATTR(THREAD_ATTR_VFPU | THREAD_ATTR_USER);
@@ -189,6 +193,7 @@ int main(int argc, char **argv)
 	
 	myChip8.loadGame("PONG");
 
+    std::vector<double> emulate_times;
 	
 	// int FPS = 50; //Framerate
 
@@ -199,7 +204,23 @@ int main(int argc, char **argv)
 		// Emulate one cycle
 		sceCtrlReadBufferPositive(&padData, 1);
         // if(padData.Buttons & PSP_CTRL_CROSS){
-			myChip8.emulateCycle();
+		auto start = chrono::steady_clock::now();
+		
+		// Emulate one cycle
+		myChip8.emulateCycle();
+
+		auto end = chrono::steady_clock::now();
+		auto diff = end - start;
+		emulate_times.push_back(chrono::duration <double, milli>(diff).count());
+
+		if (emulate_times.size() == 150)
+		{
+			double sum = std::accumulate(emulate_times.begin(), emulate_times.end(), 0.0);
+			double mean = sum / emulate_times.size();
+			pspDebugScreenPrintf(" mean value : %f ms", mean);
+            sceKernelSleepThreadCB();
+			//system("pause");
+		}
 		// }
 		// If the draw flag is set, update the screen
 		if (myChip8.drawFlag)
